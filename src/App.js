@@ -58,25 +58,20 @@ console.log(option)
         {
           loading ? <div className="load-main"> Cargando<CircularProgress /> </div>  : 
           <div className="current-char"> 
-          <div className="start">
-
-            <LineChart total={total} option={option}/>
-              {/*<AnyChart {...complexSettings} />*/}
-              {/*<AnyChart type="column"
-                //data={[1, 2, 3, 4]}
-                data={total}
-                title="Simple pie chart"/>*/}
-              {/*<button onClick={() => calculate()} > Calcular</button>*/}
+            <div className="chart">
+              <LineChart total={total} option={option}/>
+            </div>
             <div className="more-info">
               <Box sx={{ minWidth: 120 }}>
-                <FormControl fullWidth>
-                  <InputLabel id="demo-simple-select-label">Seleccionar</InputLabel>
+                <FormControl fullWidth >
+                  <InputLabel variant='filled' color='info' id="demo-simple-select-label" >Seleccionar</InputLabel>
                   <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
                     value={option}
                     label="Seleccionar"
                     onChange={handleChange}
+                    
                   >
                     <MenuItem value={'Positivos'}>Positivos</MenuItem>
                     <MenuItem value={'Negativos'}>Negativos</MenuItem>
@@ -89,10 +84,9 @@ console.log(option)
               
             </div>
           </div>
-        </div>
         }
         
-          <Footer/>
+        <Footer/>
       </div>
     </div>
   );

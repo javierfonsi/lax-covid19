@@ -36,8 +36,10 @@ ChartJS.register (
     },
     plugins:{
         legend: {
-            display: true
+            display: true,
+            position: 'bottom'
         },
+        
         //title: {
         //  display: true,
         //  text: 'Todos',
