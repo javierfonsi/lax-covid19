@@ -8,3 +8,32 @@
   flex-direction: column;
   align-items: center;
 }
+
+.current-char{
+  display: flex;
+  width: 100%;
+  margin-bottom:5%;
+  justify-content: space-around;
+}
+
+.load-main{
+  height: 700px;
+  /*width: 300px;*/
+  /*border: solid 20px red;*/
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.start{
+  align-items: center;
+  width: 85%;
+  display: flex;
+  /*justify-content: space-between;*/
+}
+
+.more-info{
+  width: 12%;
+}

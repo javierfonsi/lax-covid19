@@ -7,6 +7,10 @@ import LineChart from './LineChart';
 import axios from 'axios' 
 import Footer from './Components/footerLayout/Footer';
 import './App.css'
+import { Box, FormControl, CircularProgress } from '@mui/material';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
 
 //ReactDOM.render(
   //<AnyChart
@@ -21,77 +25,73 @@ import './App.css'
 
 function App() {
 
-  const [total, setTotal] = useState([2, 10, 30, 40, 5, 7, 9, 11])
+  const [total, setTotal] = useState([])
+  const [option, setOption] = useState('')
+  const [loading, setLoading] = useState(false)
   
+  //useState(['Positivos', 'Negativos', 'Pendientes', 'Muertes'])
   
+  const handleChange = (event) => {
+    setOption(event.target.value);
+  };
   
   useEffect(() => {
     const handleMain = async () => {
-    setTotal([2, 10, 30, 40, 5])
+      //setLoading(true)
     const { data } = await axios.get('https://lax-api-covid.herokuapp.com/api/v1/coviddaily')
-    //const posi = data.data.caso.map(({Positivos})=>Positivos)
-    //const posi = data.data.caso.map(({Date, Positivos})=> `${Date},${Positivos}\n`)
-      
-    //console.log(posi)
-    //console.log
-    //let arreglado = ""
-    //for(let i=0; i<posi.length-1; i++){
-    //  arreglado += posi[i]
-    //}
-    //console.log(arreglado)
-    //const posi = data.data.caso.forEach(({Date, Positivos})=> `${Date},${Positivos}\n+`)
     setTotal(data.data.caso)
   }
-
+  total.length>0 ? setLoading(false) : setLoading(true) //
   handleMain();
   
-}, [])
-//console.log(total)
-
-
-//const complexSettings = {
-//  width: 800,
-//  height: 600,
-//  type: 'column',
-//  //data: "P1,5\nP2,3\nP3,6\nP4,4",
-//  data: {total},
-//  title: 'Column chart',
-//  yAxis: [1, {
-//    orientation: 'right',
-//    enabled: true,
-//    labels: {
-//      format: '{%Value}{decimalPoint:\\,}',
-//      fontColor: 'red'
-//    }
-//  }],
-//  legend: {
-//    background: 'lightgreen 0.4',
-//    padding: 0
-//  },
-//  lineMarker: {
-//    value: 4.5
-//  }
-//};
-
+}, [total.length])
+console.log(option)
 
 
 
   return (
     <div className="App">
       <div className='main'>
-
         <header className="App-header">
           <h1 className="main">Reportes Covid-19</h1> 
         </header>
+        {
+          loading ? <div className="load-main"> Cargando<CircularProgress /> </div>  : 
+          <div className="current-char"> 
+          <div className="start">
 
-        <LineChart total={total} />
-          {/*<AnyChart {...complexSettings} />*/}
-          {/*<AnyChart type="column"
-            //data={[1, 2, 3, 4]}
-            data={total}
-            title="Simple pie chart"/>*/}
-
-          {/*<button onClick={() => calculate()} > Calcular</button>*/}
+            <LineChart total={total} option={option}/>
+              {/*<AnyChart {...complexSettings} />*/}
+              {/*<AnyChart type="column"
+                //data={[1, 2, 3, 4]}
+                data={total}
+                title="Simple pie chart"/>*/}
+              {/*<button onClick={() => calculate()} > Calcular</button>*/}
+            <div className="more-info">
+              <Box sx={{ minWidth: 120 }}>
+                <FormControl fullWidth>
+                  <InputLabel id="demo-simple-select-label">Seleccionar</InputLabel>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={option}
+                    label="Seleccionar"
+                    onChange={handleChange}
+                  >
+                    <MenuItem value={'Positivos'}>Positivos</MenuItem>
+                    <MenuItem value={'Negativos'}>Negativos</MenuItem>
+                    <MenuItem value={'Pendientes'}>Pendientes</MenuItem>
+                    <MenuItem value={'Muertes'}>Muertes</MenuItem>
+                    <MenuItem value={''}>Todos</MenuItem>
+                  </Select>
+                </FormControl>
+              </Box>
+              
+            </div>
+          </div>
+        </div>
+        }
+        
           <Footer/>
       </div>
     </div>
