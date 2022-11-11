@@ -13,7 +13,7 @@
 .load-main{
   height: 80vh;
   width: 300px;
-  border: solid 20px red;
+  /*border: solid 20px red;*/
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -28,15 +28,10 @@
 }
 
 .chart{
-  width: 82%;
+  width: 88%;
 }
 
-.start{
-  align-items: center;
-  width: 85%;
-  display: flex;
-  /*justify-content: space-between;*/
-}
+
 
 .more-info{
   width: 8%;

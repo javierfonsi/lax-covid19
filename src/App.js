@@ -64,12 +64,12 @@ console.log(option)
             <div className="more-info">
               <Box sx={{ minWidth: 120 }}>
                 <FormControl fullWidth >
-                  <InputLabel variant='filled' color='info' id="demo-simple-select-label" >Seleccionar</InputLabel>
+                  <InputLabel variant='filled' color='info' id="demo-simple-select-label" > Selecciona </InputLabel>
                   <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
                     value={option}
-                    label="Seleccionar"
+                    label=" Selecciona "
                     onChange={handleChange}
                     
                   >
