@@ -52,41 +52,42 @@ console.log(option)
     <div className="App">
       <div className='main'>
         <header className="App-header">
-          <h1 className="main">Reportes Covid-19</h1> 
+          <h1 className="title-main">Reportes Covid-19</h1> 
         </header>
         {
           loading ? <div className="load-main"> Cargando<CircularProgress /> </div>  : 
           <div className="current-char"> 
             <div className="chart">
               <LineChart total={total} option={option}/>
-              <div className="separator"></div>
+              <div className="more-info">
+                <Box variant='contained' color='success' sx={{ minWidth: 120, padding:0}}>
+                  <FormControl fullWidth >
+                    <InputLabel variant='filled' color='info' id="demo-simple-select-label" > Selecciona </InputLabel>
+                    <Select
+                      labelId="demo-simple-select-label"
+                      id="demo-simple-select"
+                      value={option}
+                      //label=" Selecciona "
+                      onChange={handleChange}
+                    >
+                      <MenuItem value={'Positivos'}>Positivos</MenuItem>
+                      <MenuItem value={'Negativos'}>Negativos</MenuItem>
+                      <MenuItem value={'Pendientes'}>Pendientes</MenuItem>
+                      <MenuItem value={'Muertes'}>Muertes</MenuItem>
+                      <MenuItem value={''}>Todos</MenuItem>
+                    </Select>
+                  </FormControl>
+                </Box>              
+              </div>
+              <div className="pie-container">
               <PieChart total={total} cDate={cDate}/>
+              </div>
               <div className="date-control">  
                 <Button variant='contained' color='info' onClick={()=>{handleDateNext(1)}}>ant</Button>
                 <Button variant='contained' color='info' onClick={()=>{handleDateNext(undefined)}}>sig</Button>
               </div>
             </div>
-            <div className="more-info">
-              <Box variant='contained' color='success' sx={{ minWidth: 120, padding:0}}>
-                <FormControl fullWidth >
-                  <InputLabel variant='filled' color='info' id="demo-simple-select-label" > Selecciona </InputLabel>
-                  <Select
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    value={option}
-                    //label=" Selecciona "
-                    onChange={handleChange}
-                  >
-                    <MenuItem value={'Positivos'}>Positivos</MenuItem>
-                    <MenuItem value={'Negativos'}>Negativos</MenuItem>
-                    <MenuItem value={'Pendientes'}>Pendientes</MenuItem>
-                    <MenuItem value={'Muertes'}>Muertes</MenuItem>
-                    <MenuItem value={''}>Todos</MenuItem>
-                  </Select>
-                </FormControl>
-              </Box>
-              
-            </div>
+
           </div>
         }
         

@@ -23,12 +23,27 @@ export default function PieChart({total, cDate}) {
         plugins:{
             legend: {
                 display: true,
-                position: 'bottom'
+                position: 'right',
+                padding:{
+                    left:200,
+                    right:120
+                  }
             },
             
             title: {
               display: true,
               text:`Fecha: ${titles[cDate]}`,
+              padding:{
+                top:10,
+                bottom:12
+              },
+              font:{
+                weight:'bold', size:'25'
+              },
+              borderColor: '#000'
+              
+
+              
             },
         }
       }
@@ -57,6 +72,7 @@ export default function PieChart({total, cDate}) {
               'rgba(255, 99, 132, 1)',
             ],
             borderWidth: 1,
+            
           },
         ],
       };
