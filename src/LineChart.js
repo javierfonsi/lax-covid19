@@ -36,7 +36,8 @@ ChartJS.register (
     },
     plugins:{
         legend: {
-            display: true,
+            //display: true,
+            display: false,
             position: 'bottom'
         },
         
@@ -56,9 +57,6 @@ ChartJS.register (
         const muertes = total.map(({Muertes})=> Muertes)
 
 
-    //const labels = date
-    //const labels = [allValues.map(({Date}) => Date)]
-    //console.log(scores, labels)
 
     let data = {
         datasets: [
@@ -66,26 +64,28 @@ ChartJS.register (
                 label: "Positivos",
             data: positivos,
             //borderColor: "rgb(255, 25, 192)",
-            backgroundColor: "rgba(250, 10, 162, 0.3)"
+            borderColor: "rgb(54, 162, 235)",
+            backgroundColor: "rgba(54, 162, 235, 0.2)"
+            //backgroundColor: "rgba(250, 10, 162, 0.3)"
             }
             ,
             {
                 label: "Negativos",
             data: negativos,
             borderColor: "rgb(75, 192, 192)",
-            backgroundColor: "rgba(95, 192, 162, 0.3)"
+            backgroundColor: "rgba(75, 192, 192, 0.2)"
             },
             {
                 label: "Pendientes",
             data: pendientes,
-            borderColor: "rgb(87, 190, 25)",
-            backgroundColor: "rgba(95, 252, 162, 0.7)"
+            borderColor: "rgb(255, 206, 86)",
+            backgroundColor: "rgba(255, 206, 86, 0.4)"
             },
             {
                 label: "Muertes",
             data: muertes,
-            borderColor: "rgb(190, 19, 25)",
-            backgroundColor: "rgba(195, 19, 50, 0.7)"
+            borderColor: "rgb(255, 99, 132)",
+            backgroundColor: "rgba(255, 28, 50, 0.7)"
             }
         ],
         labels,

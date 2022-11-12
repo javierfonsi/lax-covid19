@@ -1,35 +1,36 @@
 import React, { useState, useEffect} from 'react'
-//import React from 'react'
 import LineChart from './LineChart';
-//import ReactDOM from 'react-dom'
-//import AnyChart from 'anychart-react.min.js'
-//import AnyChart from 'anychart-react'
+import PieChart from './PieChart'
+
 import axios from 'axios' 
 import Footer from './Components/footerLayout/Footer';
 import './App.css'
-import { Box, FormControl, CircularProgress } from '@mui/material';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import Select from '@mui/material/Select';
-
-//ReactDOM.render(
-  //<AnyChart
-  //  type="pie"
-  //  data={[1, 2, 3, 4]}
-  //  title="Simple pie chart"
-  ///>, document.getElementById('root'));
-
-
-//import React from 'react';//import { Counter } from './features/counter/Counter';
-//import './App.css';
+import { Select, MenuItem, InputLabel, Box, FormControl, CircularProgress, Button } from '@mui/material';
 
 function App() {
 
   const [total, setTotal] = useState([])
   const [option, setOption] = useState('')
   const [loading, setLoading] = useState(false)
+  const [cDate, setCDate] = useState(0)
+
+  const handleDateNext = (val) =>{
+    if(val){
+      if(cDate===total.length-1){
+        setCDate(0)
+      }else{
+        setCDate(cDate+1)
+      }
+    }
+    else{
+      if(cDate===0){
+        setCDate(total.length-1)
+      }else{
+        setCDate(cDate-1)
+      }
+    }
+  }
   
-  //useState(['Positivos', 'Negativos', 'Pendientes', 'Muertes'])
   
   const handleChange = (event) => {
     setOption(event.target.value);
@@ -47,8 +48,6 @@ function App() {
 }, [total.length])
 console.log(option)
 
-
-
   return (
     <div className="App">
       <div className='main'>
@@ -60,18 +59,23 @@ console.log(option)
           <div className="current-char"> 
             <div className="chart">
               <LineChart total={total} option={option}/>
+              <div className="separator"></div>
+              <PieChart total={total} cDate={cDate}/>
+              <div className="date-control">  
+                <Button variant='contained' color='info' onClick={()=>{handleDateNext(1)}}>ant</Button>
+                <Button variant='contained' color='info' onClick={()=>{handleDateNext(undefined)}}>sig</Button>
+              </div>
             </div>
             <div className="more-info">
-              <Box sx={{ minWidth: 120 }}>
+              <Box variant='contained' color='success' sx={{ minWidth: 120, padding:0}}>
                 <FormControl fullWidth >
                   <InputLabel variant='filled' color='info' id="demo-simple-select-label" > Selecciona </InputLabel>
                   <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
                     value={option}
-                    label=" Selecciona "
+                    //label=" Selecciona "
                     onChange={handleChange}
-                    
                   >
                     <MenuItem value={'Positivos'}>Positivos</MenuItem>
                     <MenuItem value={'Negativos'}>Negativos</MenuItem>
