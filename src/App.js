@@ -39,7 +39,8 @@ function App() {
   useEffect(() => {
     const handleMain = async () => {
       //setLoading(true)
-    const { data } = await axios.get('https://lax-api-covid.herokuapp.com/api/v1/coviddaily')
+    //const { data } = await axios.get('https://lax-api-covid.herokuapp.com/api/v1/coviddaily')
+    const { data } = await axios.get('https://covid-report.onrender.com/api/v1/coviddaily')
     setTotal(data.data.caso)
   }
   total.length>0 ? setLoading(false) : setLoading(true) //
